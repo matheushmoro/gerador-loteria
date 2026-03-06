@@ -326,6 +326,10 @@ h2 {
     gap: 0.8rem;
 }
 
+.game-mega .controls {
+    margin-top: 0.5rem;
+}
+
 .controls label {
     font-size: 1rem;
     color: var(--text-soft);
@@ -414,12 +418,17 @@ h3 {
 }
 
 .numbers-list {
-    margin-top: 0.9rem;
-    min-height: 52px;
+    margin-top: 0.15rem;
+    min-height: 6px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.55rem;
+}
+
+.numbers-list:not(:empty) {
+    margin-top: 0.9rem;
+    min-height: 52px;
 }
 
 .number-box {

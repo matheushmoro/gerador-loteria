@@ -97,8 +97,21 @@ function renderTicketMarks(numbers, gameConfig) {
     ticketMarks.innerHTML = "";
 
     numbers.forEach((number) => {
-        const column = ((number - 1) % gameConfig.gridCols) + 1;
-        const row = Math.floor((number - 1) / gameConfig.gridCols) + 1;
+        let column;
+        let row;
+
+        if (gameConfig.key === "lotofacil") {
+            // LotoFacil ticket is numbered by columns: right-to-left, top-to-bottom.
+            const index = number - 1;
+            const colFromRight = Math.floor(index / gameConfig.gridRows);
+            column = gameConfig.gridCols - colFromRight;
+            row = (index % gameConfig.gridRows) + 1;
+        } else {
+            // Mega-Sena keeps the conventional left-to-right, top-to-bottom order.
+            column = ((number - 1) % gameConfig.gridCols) + 1;
+            row = Math.floor((number - 1) / gameConfig.gridCols) + 1;
+        }
+
         const mark = document.createElement("div");
 
         mark.className = "ticket-mark";

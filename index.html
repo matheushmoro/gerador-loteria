@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador De Jogo | Mega-Sena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="game-mega">
+    <header class="topbar">
+        <img src="assets/dado-verde.png" alt="Logo Mega-Sena" class="logo-ticket">
+        <nav class="game-switch" aria-label="Escolha da loteria">
+            <button class="game-tab is-active" data-game="mega" type="button">MEGA-SENA</button>
+            <button class="game-tab" data-game="lotofacil" type="button">lotofácil</button>
+        </nav>
+    </header>
+
+    <main class="app">
+        <section class="hero" aria-label="Gerador de jogo Mega-Sena">
+            <h1>Gerador De Jogo</h1>
+            <h2 id="game-subtitle">Gere aqui seus números para a mega sena automaticamente</h2>
+
+            <div class="ticket-wrapper" aria-label="Bilhete da Mega-Sena com marcacao dos numeros">
+                <img id="ticket-image" src="assets/bilhete-ms-hd-section.png" alt="Bilhete da Mega-Sena" class="ticket-image">
+                <div id="ticket-marks" class="ticket-marks" aria-hidden="true"></div>
+            </div>
+
+            <div class="controls">
+                <label id="amount-label" for="amount">Quantos números você vai jogar?</label>
+                <select id="amount" name="amount" aria-label="Quantidade de numeros">
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                </select>
+
+                <button id="generate-btn" type="button">Gerar</button>
+            </div>
+
+            <section class="results" aria-label="Numeros gerados">
+                <h3>Seus números:</h3>
+                <div id="numbers-list" class="numbers-list" aria-live="polite"></div>
+            </section>
+        </section>
+    </main>
+
+    <footer class="copyright">
+        <a
+            class="copyright-text-link"
+            href="https://www.linkedin.com/in/matheus-moro-456569141/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn de Matheus Moro"
+        >© 2026 Matheus Moro</a>
+        <a
+            class="copyright-link"
+            href="https://www.linkedin.com/in/matheus-moro-456569141/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn de Matheus Moro"
+        >
+            <img src="assets/linkedin-green.png" alt="LinkedIn" class="linkedin-icon">
+        </a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

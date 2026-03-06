@@ -1,0 +1,524 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scrollbar-gutter: stable;
+}
+
+:root {
+    --bg-main: #042b22;
+    --bg-mid: #0a4c36;
+    --bg-accent: #0f7f44;
+    --bg-spot-1: #2dc56f;
+    --bg-spot-2: #13aa53;
+    --card: rgba(255, 255, 255, 0.12);
+    --text: #f8f9f6;
+    --text-soft: #d2f0db;
+    --ball: #f0fff4;
+    --ball-text: #005b2f;
+    --shadow: rgba(0, 0, 0, 0.32);
+    --ticket-grid-left: 14.7%;
+    --ticket-grid-top: 49.5%;
+    --ticket-grid-width: 74.4%;
+    --ticket-grid-height: 38.9%;
+    --ticket-mark-width: 67%;
+    --ticket-mark-height: 82%;
+    --ticket-aspect-ratio: 1376 / 752;
+    --row1-offset: -15%;
+    --row2-offset: 0%;
+    --row3-offset: 0%;
+    --row4-offset: 0%;
+    --row5-offset: 0%;
+    --row6-offset: 0%;
+    --ticket-grid-cols: 10;
+    --ticket-grid-rows: 6;
+    --button-top: #f7ff65;
+    --button-bottom: #c8e923;
+    --button-text: #06351f;
+    --logo-filter: none;
+}
+
+body.game-lotofacil {
+    --bg-main: #2f1045;
+    --bg-mid: #4b1b79;
+    --bg-accent: #6c2bb6;
+    --bg-spot-1: #b66bff;
+    --bg-spot-2: #8d42e6;
+    --card: rgba(255, 255, 255, 0.13);
+    --text-soft: #e6d7ff;
+    --ball: #f8f0ff;
+    --ball-text: #4f1e86;
+    --button-top: #f4a7ff;
+    --button-bottom: #d56bff;
+    --button-text: #3b0d5f;
+    --logo-filter: hue-rotate(165deg) saturate(120%) brightness(0.92) contrast(1.06);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-y: scroll;
+    font-family: "Manrope", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 10% -10%, var(--bg-spot-1) 0%, transparent 34%),
+        radial-gradient(circle at 90% 120%, var(--bg-spot-2) 0%, transparent 28%),
+        linear-gradient(125deg, var(--bg-main) 0%, var(--bg-mid) 42%, var(--bg-accent) 100%);
+}
+
+.topbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem 0;
+    min-height: 72px;
+}
+
+.logo-ticket {
+    width: clamp(92px, 10.5vw, 138px);
+    height: auto;
+    filter: var(--logo-filter) drop-shadow(0 8px 14px var(--shadow));
+    transition: filter 260ms ease;
+}
+
+.app {
+    width: min(980px, 100%);
+    margin-inline: auto;
+    padding: 0.4rem 1rem 1rem;
+}
+
+.game-switch {
+    width: min(560px, 100%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0.42rem;
+    border-radius: 999px;
+    background: rgba(46, 50, 63, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.23);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+}
+
+.game-tab {
+    border: none;
+    border-radius: 999px;
+    padding: 0.75rem 0.95rem;
+    cursor: pointer;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: rgba(245, 245, 245, 0.9);
+    background: transparent;
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.game-tab.is-active {
+    color: #1e1f22;
+    background: #f1f1f1;
+}
+
+.game-tab:hover {
+    transform: translateY(-1px);
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: clamp(0.75rem, 1.2vw, 1.2rem);
+    border-radius: 24px;
+    background: var(--card);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 14px 38px var(--shadow);
+}
+
+.switch-target {
+    will-change: transform, opacity;
+}
+
+.switch-out {
+    animation: switch-out 200ms ease forwards;
+}
+
+.switch-in {
+    animation: switch-in 280ms ease forwards;
+}
+
+h1 {
+    margin: 0;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+}
+
+h2 {
+    margin: 0.4rem 0 0.85rem;
+    max-width: 740px;
+    font-size: clamp(1rem, 2.4vw, 1.4rem);
+    color: var(--text-soft);
+    font-weight: 500;
+}
+
+.ticket-wrapper {
+    position: relative;
+    width: min(530px, 100%);
+    aspect-ratio: var(--ticket-aspect-ratio);
+    overflow: hidden;
+}
+
+.ticket-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 12px 26px var(--shadow);
+}
+
+.ticket-marks {
+    position: absolute;
+    left: var(--ticket-grid-left);
+    top: var(--ticket-grid-top);
+    width: var(--ticket-grid-width);
+    height: var(--ticket-grid-height);
+    display: grid;
+    grid-template-columns: repeat(var(--ticket-grid-cols), 1fr);
+    grid-template-rows: repeat(var(--ticket-grid-rows), 1fr);
+    pointer-events: none;
+}
+
+.ticket-mark {
+    position: relative;
+    width: var(--ticket-mark-width);
+    height: var(--ticket-mark-height);
+    justify-self: center;
+    align-self: center;
+    border-radius: 2px;
+    background: #000;
+    opacity: 0.9;
+    animation: reveal 220ms ease-out both;
+}
+
+.game-mega .ticket-mark[data-row="1"] {
+    top: -50%;
+}
+
+.game-mega .ticket-mark[data-row="2"] {
+    top: -40%;
+}
+
+.game-mega .ticket-mark[data-row="3"] {
+    top: -30%;
+}
+
+.game-mega .ticket-mark[data-row="4"] {
+    top: -18%;
+}
+
+.game-mega .ticket-mark[data-row="5"] {
+    top: -6%;
+}
+
+.game-mega .ticket-mark[data-row="6"] {
+    top: 10%;
+}
+
+.game-mega .ticket-mark[data-col="1"] {
+    left: -25%;
+}
+
+.game-mega .ticket-mark[data-col="2"] {
+    left: -18%;
+}
+
+.game-mega .ticket-mark[data-col="3"] {
+    left: -17%;
+}
+
+.game-mega .ticket-mark[data-col="4"] {
+    left: -13%;
+}
+
+.game-mega .ticket-mark[data-col="5"] {
+    left: -8%;
+}
+
+.game-mega .ticket-mark[data-col="6"] {
+    left: -6%;
+}
+
+.game-mega .ticket-mark[data-col="7"] {
+    left: 0%;
+}
+
+.game-mega .ticket-mark[data-col="8"] {
+    left: 6%;
+}
+
+.game-mega .ticket-mark[data-col="9"] {
+    left: 10%;
+}
+
+.game-mega .ticket-mark[data-col="10"] {
+    left: 14%;
+}
+
+/* Ajustes exclusivos da grade da LotoFacil (5x5) */
+.game-lotofacil .ticket-mark[data-row="1"] {
+    top: 30%;
+}
+
+.game-lotofacil .ticket-mark[data-row="2"] {
+    top: 30%;
+}
+
+.game-lotofacil .ticket-mark[data-row="3"] {
+    top: 20%;
+}
+
+.game-lotofacil .ticket-mark[data-row="4"] {
+    top: 15%;
+}
+
+.game-lotofacil .ticket-mark[data-row="5"] {
+    top: 5%;
+}
+
+.game-lotofacil .ticket-mark[data-col="1"] {
+    left: -15%;
+}
+
+.game-lotofacil .ticket-mark[data-col="2"] {
+    left: -15%;
+}
+
+.game-lotofacil .ticket-mark[data-col="3"] {
+    left: -15%;
+}
+
+.game-lotofacil .ticket-mark[data-col="4"] {
+    left: -8%;
+}
+
+.game-lotofacil .ticket-mark[data-col="5"] {
+    left: -6%;
+}
+
+.game-lotofacil .ticket-mark {
+    width: 42%;
+}
+
+.controls {
+    margin-top: 1rem;
+    width: min(600px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.controls label {
+    font-size: 1rem;
+    color: var(--text-soft);
+}
+
+.controls select {
+    width: min(160px, 100%);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 10px;
+    padding: 0.7rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+#generate-btn {
+    width: min(230px, 100%);
+    margin-top: 0.4rem;
+    border: none;
+    border-radius: 999px;
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+    color: var(--button-text);
+    background: linear-gradient(180deg, var(--button-top) 0%, var(--button-bottom) 100%);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+    transition: transform 180ms ease, filter 180ms ease;
+}
+
+#generate-btn:hover {
+    transform: translateY(-2px) scale(1.01);
+    filter: saturate(115%);
+}
+
+#generate-btn:active {
+    transform: translateY(0);
+}
+
+.results {
+    width: 100%;
+    margin-top: 1.15rem;
+}
+
+.copyright {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    text-align: center;
+    padding: 0.35rem 1rem 0.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: rgba(248, 249, 246, 0.62);
+}
+
+.copyright-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.copyright-text-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.copyright-text-link:hover {
+    text-decoration: underline;
+}
+
+.linkedin-icon {
+    width: 28px;
+    height: 28px;
+    display: block;
+    opacity: 0.88;
+}
+
+h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-soft);
+}
+
+.numbers-list {
+    margin-top: 0.9rem;
+    min-height: 52px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.55rem;
+}
+
+.number-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 1.12rem;
+    color: var(--ball-text);
+    background: var(--ball);
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.25);
+    animation: pop-in 280ms ease both;
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pop-in {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes switch-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-14px);
+    }
+}
+
+@keyframes switch-in {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --ticket-grid-left: 14.9%;
+        --ticket-grid-top: 49.7%;
+        --ticket-grid-width: 74.2%;
+        --ticket-grid-height: 38.6%;
+        --ticket-mark-width: 65%;
+        --ticket-mark-height: 80%;
+    }
+
+    .topbar {
+        padding-top: 0.2rem;
+        min-height: 66px;
+    }
+
+    .hero {
+        border-radius: 18px;
+    }
+
+    .game-switch {
+        width: min(250px, calc(100% - 150px));
+        left: 54%;
+        padding: 0.34rem;
+    }
+
+    .game-tab {
+        font-size: 0.83rem;
+        padding: 0.62rem 0.7rem;
+    }
+
+    .number-box {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+    }
+
+    .copyright {
+        padding-bottom: 0.45rem;
+        font-size: 0.72rem;
+    }
+
+}

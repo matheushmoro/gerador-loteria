@@ -33,4 +33,4 @@ Sinta-se à vontade para abrir issues ou enviar pull requests!
 Este projeto está sob a licença MIT.
 
 ---
-Desenvolvido por [Matheus Moro](https://www.linkedin.com/in/matheus-moro-456569141/)
+Desenvolvido por [Matheus Moro](https://www.linkedin.com/in/matheushmoro/)

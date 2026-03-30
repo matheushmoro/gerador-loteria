@@ -233,7 +233,7 @@ h2 {
 }
 
 .game-mega .ticket-mark[data-col="1"] {
-    left: -25%;
+    left: -22%;
 }
 
 .game-mega .ticket-mark[data-col="2"] {
@@ -249,7 +249,7 @@ h2 {
 }
 
 .game-mega .ticket-mark[data-col="5"] {
-    left: -8%;
+    left: -6%;
 }
 
 .game-mega .ticket-mark[data-col="6"] {
@@ -274,11 +274,11 @@ h2 {
 
 /* Ajustes exclusivos da grade da LotoFacil (5x5) */
 .game-lotofacil .ticket-mark[data-row="1"] {
-    top: 30%;
+    top: 33%;
 }
 
 .game-lotofacil .ticket-mark[data-row="2"] {
-    top: 30%;
+    top: 28%;
 }
 
 .game-lotofacil .ticket-mark[data-row="3"] {
@@ -290,11 +290,11 @@ h2 {
 }
 
 .game-lotofacil .ticket-mark[data-row="5"] {
-    top: 5%;
+    top: 8%;
 }
 
 .game-lotofacil .ticket-mark[data-col="1"] {
-    left: -15%;
+    left: -17%;
 }
 
 .game-lotofacil .ticket-mark[data-col="2"] {

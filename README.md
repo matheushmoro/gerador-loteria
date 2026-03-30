@@ -1,10 +1,10 @@
-# Gerador de Jogo | Mega-Sena
+# Gerador de Jogo | Mega-Sena / lotofácil
 
-Este projeto é um gerador de jogos para a Mega-Sena, feito em HTML, CSS e JavaScript. Gere seus números automaticamente e visualize-os em um bilhete virtual.
+Este projeto é um gerador de jogos para a Mega-Sena e lotofácil, feito em HTML, CSS e JavaScript. Gere seus números automaticamente e visualize-os em um bilhete virtual.
 
 ## Funcionalidades
-- Geração automática de números para a Mega-Sena
-- Escolha da quantidade de números (6 a 20)
+- Geração automática de números para a Mega-Sena e lotofácil
+- Escolha da quantidade de números
 - Visualização dos números marcados em um bilhete virtual
 - Interface simples e responsiva
 
